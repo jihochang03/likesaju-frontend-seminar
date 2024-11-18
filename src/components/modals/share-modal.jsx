@@ -27,6 +27,7 @@ export const SajuShareModal = ({ setIsModalOpen, OutputCardData }) => {
   const [profiles, setProfiles] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [searchText, setSearchText] = useState('');
+  const { sendJsonMessage } = useChatWebSocketContext();
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
@@ -69,8 +70,10 @@ export const SajuShareModal = ({ setIsModalOpen, OutputCardData }) => {
         '<br>' +
         `${OutputCardData[3].title}: ${OutputCardData[3].msg}`;
 
-      //TODO
-      alert('공유');
+      sendJsonMessage({
+        message: formattedMessage,
+        participant_id: selectedUserId,
+      });
 
       setIsModalOpen(false);
     } catch (error) {

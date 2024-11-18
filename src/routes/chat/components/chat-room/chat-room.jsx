@@ -15,8 +15,13 @@ const UsernameStyledText = ({ username }) => (
 );
 
 export const ChatRoom = () => {
-  const { chatRoomId, setChatRoomId, chatRoomList, messageList } =
-    useChatWebSocketContext();
+  const {
+    chatRoomId,
+    setChatRoomId,
+    chatRoomList,
+    messageList,
+    sendJsonMessage,
+  } = useChatWebSocketContext(); //추가
 
   const [message, setMessage] = useState('');
   const endOfMessagesRef = useRef(null);
@@ -50,7 +55,12 @@ export const ChatRoom = () => {
     }
     //TODO
     alert('전송');
-    
+
+    sendJsonMessage({
+      message: message,
+      chat_room_id: chatRoomId,
+    });
+
     setMessage('');
   }, [message, chatRoomId]);
 

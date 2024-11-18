@@ -3,6 +3,7 @@ import { cn } from 'utils/cn';
 export const SectionLayout = ({
   children,
   outerLayerClassName: _outerLayerClassName,
+  innerLayerRef,
   innerLayerClassName: _innerLayerClassName,
 }) => {
   const outerLayerClassName = cn(
@@ -11,13 +12,18 @@ export const SectionLayout = ({
   );
 
   const innerLayerClassName = cn(
-    'relative px-[20vw] w-full flex justify-between',
+    'relative px-[20vw] w-full flex justify-between items-center items-center',
     _innerLayerClassName,
   );
 
   return (
     <div className={outerLayerClassName}>
-      <div className={innerLayerClassName}>{children}</div>
+      <div
+        ref={innerLayerRef} // 추가!
+        className={innerLayerClassName}
+      >
+        {children}
+      </div>
     </div>
   );
 };

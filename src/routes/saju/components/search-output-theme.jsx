@@ -7,7 +7,7 @@ import { SajuShareModal } from '../../../components/modals/share-modal';
 import locked from '../../../assets/images/locked.png';
 import { useSelector } from 'react-redux';
 import { PointModal } from 'components/modals/point-modal';
-
+import { ChatWebSocketProvider } from 'routes/chat/contexts/chat-websocket-context';
 export const SearchOutputTheme = () => {
   const OutputCardData = [
     {
@@ -95,10 +95,12 @@ export const SearchOutputTheme = () => {
             오늘 운세 공유하기
           </Button>
           {isShareModalOpen && (
-            <SajuShareModal
-              OutputCardData={OutputCardData}
-              setIsModalOpen={setIsShareModalOpen}
-            />
+            <ChatWebSocketProvider>
+              <SajuShareModal
+                OutputCardData={OutputCardData}
+                setIsModalOpen={setIsShareModalOpen}
+              />
+            </ChatWebSocketProvider>
           )}
         </>
       )}

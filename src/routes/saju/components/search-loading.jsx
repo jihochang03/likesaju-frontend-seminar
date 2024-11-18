@@ -1,4 +1,6 @@
 import loadingImg from '../../../assets/images/loading-temp.png';
+import Lottie from 'lottie-react';
+import Loading from '../../../assets/Loading.json';
 
 const SajuSearchLoading = () => {
   return (
@@ -6,13 +8,9 @@ const SajuSearchLoading = () => {
       <div className="text-neutral-800 text-[36px] font-extrabold nanum-extra-bold">
         사주 결과 분석 중
       </div>
-      <LoadingLottie />
+      <Lottie animationData={Loading} loop={true} />
     </div>
   );
 };
 
 export default SajuSearchLoading;
-
-const LoadingLottie = () => {
-  return <img src={loadingImg} alt="loading" />;
-};
